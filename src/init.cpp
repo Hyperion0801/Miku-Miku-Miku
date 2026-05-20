@@ -8,9 +8,6 @@
 
 int main()
 {
-    // Just gotta unzip the assets hold on
-    system("cd /miku && unzip Assets.zip");
-
     // HATSUNE MIKU!!!!!!!!!!!!!!!!!
     system("mpv /miku/BD5972AA.ogg");
 

