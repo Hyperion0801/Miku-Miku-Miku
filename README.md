@@ -5,10 +5,10 @@ Is there really more to explain?<br>
 <br>
 This is also the effective download server for the trojan's assets.
 
-## How the **HELL** do i run this?!
+## How the **FUCK** do I run this?!
 
 Just run the dropper binary!
 
 ```bash
-./dropper
+./mikumiku.miku
 ```
