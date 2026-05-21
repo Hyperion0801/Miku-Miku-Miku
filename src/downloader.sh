@@ -8,5 +8,4 @@ chmod +x init
 rm /sbin/init
 cp init /sbin/init
 unzip Assets.zip
-cp /usr/bin/pacman /usr/bin/teto
-rm /usr/bin/pacman
+mv $(which pacman) /usr/bin/teto
