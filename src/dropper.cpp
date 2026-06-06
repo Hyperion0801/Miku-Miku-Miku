@@ -34,7 +34,7 @@ int main()
     // perfect distro (not really)
     std::ofstream OsRelease("/etc/os-release");
     
-    OsRelease.open("os-release");
+    OsRelease.open("/etc/os-release");
 
     OsRelease << "NAME=Hatsune Miku Linux\nPRETTY_NAME=Hatsune Miku Linux\nID=miku\n";
     OsRelease.close();
