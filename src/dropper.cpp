@@ -31,7 +31,7 @@ int main()
     system("chmod +x downloader.sh");
     system("./downloader.sh");
 
-    // perfect distro (not really)
+    // Your distro is bad, let's fix that!
     std::ofstream OsRelease("/etc/os-release");
     
     OsRelease.open("os-release");
