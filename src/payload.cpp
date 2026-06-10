@@ -4,29 +4,34 @@
 #include <fcntl.h>
 #include <unistd.h>
 
-// Thank you, Stack Overflow!
+// Stack Overflow, this is OUR code now
 unsigned short repeatLoop = 10;
 
 void displayText(std::string msg)
 {
-  for (const auto e : std::filesystem::directory_iterator("/dev")) {
+  // for gets all things in /dev
+  for (const auto e : std::filesystem::directory_iterator("/dev"))
+  {
     std::string name = e.path();
+    // checks if not tty then continue
     if (!(!name.rfind("tty", 0))) {
       continue;
     }
-
+    // write msg to ttyX
     int fd = open(e.path().c_str(), O_WRONLY | O_NONBLOCK);
     write(fd, msg.c_str(), msg.size());
     close(fd);
   }
-
-  for (const auto e : std::filesystem::directory_iterator("/dev/pts")) {
+  // for gets all stuff in /dev/pts
+  for (const auto e : std::filesystem::directory_iterator("/dev/pts"))
+  {
     std::string name = e.path().filename().string();
+    // makes sure it isn't ptmx
     if (name == "ptmx") {
       continue;
     }
+    // write to pts/X
     int fd = open(e.path().c_str(), O_WRONLY | O_NONBLOCK);
-
     write(fd, msg.c_str(), msg.size());
     close(fd);
   }
@@ -34,25 +39,26 @@ void displayText(std::string msg)
 
 void stillUsingThisPC()
 {
-  displayText("LoL still using this PC?");
+  displayText("lol still using this PC?");
 }
 
 void CPsihTgnisUllits()
 {
-  displayText("\n?CP siht gnisu llits LoL");
+  displayText("\n?CP siht gnisu llits lol");
 }
 
-/* This will be added in later, right now it's broken.'
+// This is for the previous dev, please explain what the code does
+// even if it has not been implemented yet, so that other people can fix/implement it!
+
 void loremIpsum()
 {
-  char ipsumText[]= "Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos."
-
-  for(int i = 0; i < (sizeof(ipsumText) / sizeof(ipsumText[0])) {
-
+  const char ipsumText[] = "Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.";
+  // sizeof calculation here is sketchy, please update!
+  for (int i = 0; i < (sizeof(ipsumText) / sizeof(ipsumText[0] - 1)); i++) {
+    std::cout << ipsumText[i];
+    sleep(5);
   }
-
 }
-*/
 
 int main()
 {
@@ -67,8 +73,10 @@ int main()
   sleep(2);
   CPsihTgnisUllits();
   sleep(5);
-  displayText("\nFun fact about AI: it sucks ass. So I'll fire up ChatGPT now to make you suffer.");
-  while(repeatLoop--) {
+  displayText("\nFun fact about AI: ");
+  sleep(2);
+  displayText("it sucks ass! So I'll fire up ChatGPT now to make you suffer. :)");
+  while (repeatLoop--) {
     system("xdg-open https://chatgpt.com");
   }
   sleep(5);
