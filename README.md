@@ -5,6 +5,14 @@ Is there really more to explain?<br>
 <br>
 This is also the effective download server for the trojan's assets.
 
+## Where do I download this?
+
+Please download this from our github actions, or compile with
+
+```bash
+make
+```
+
 ## How the **FUCK** do I run this?!
 
 Just run the dropper binary!
