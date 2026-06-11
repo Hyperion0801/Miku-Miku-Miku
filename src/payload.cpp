@@ -54,9 +54,11 @@ void loremIpsum()
 {
   const char ipsumText[] = "Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.";
   // sizeof calculation here is sketchy, please update!
+  // Hyperion here, no thanks I'm not experienced enough.'
   for (int i = 0; i < (sizeof(ipsumText) / sizeof(ipsumText[0] - 1)); i++) {
-    std::cout << ipsumText[i];
-    sleep(5);
+    std::cout << ipsumText[i] << std::flush;
+    ;
+    usleep(200000);
   }
 }
 
@@ -81,6 +83,8 @@ int main()
   }
   sleep(5);
   displayText("Is this too little AI for you?");
+  sleep(5);
+  loremIpsum();
   sleep(5);
   displayText("\nYo did you hear about the-\nHEADPHONE WARNING IN 5 SECONDS");
   system("mpv --no-video https://www.youtube.com/watch?v=vPlFkyXY6L0 > /dev/null");
