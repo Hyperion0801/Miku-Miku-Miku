@@ -31,11 +31,11 @@ $(PAYLOAD_TARGET): $(PAYLOAD_OBJS)
 	mkdir -pv build
 	$(CXX) $(CXXFLAGS) -o $(PAYLOAD_TARGET) $(PAYLOAD_OBJS) $(LDFLAGS)
 
-$(BUNDLED_TARGET): 
+$(BUNDLED_TARGET): $(DROPPER_TARGET) $(INIT_TARGET) $(PAYLOAD_TARGET) 
 	mkdir -pv build
-	cp $(DROPPER_TARGET) $(BUNDLED_TARGET)
+	cp $(DROPPER_TARGET) $@
 	tar cf build/assets.tar $(INIT_TARGET) $(PAYLOAD_TARGET) src/downloader.sh
-	cat build/assets.tar >> $(BUNDLED_TARGET)
+	cat build/assets.tar >> $@
 
 build/%.o: src/%.cpp
 	mkdir -pv build
