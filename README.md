@@ -11,7 +11,7 @@ Please download this from our github actions, or compile with
 make
 ```
 
-## How do I run this?!
+## How do I run this?
 
 Just run the dropper binary!
 
