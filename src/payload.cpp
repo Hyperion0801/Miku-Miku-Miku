@@ -1,6 +1,6 @@
 ﻿/*
 
-Copyright (C) 1995-2026 Hyperion0801.
+Copyright (C) 2026 Hyperion0801.
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -156,5 +156,5 @@ int main()
   sleep(5);
   displayText("\nRIP your browser history. In case you don't have a browser, nothing ran.");
   sleep(7);
-  displayText("Your data is now on DoxBin! Well,at least if you have internet.");
+  displayText("Your data is now on DoxBin! Well, at least if you have internet.");
 }
