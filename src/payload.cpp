@@ -1,4 +1,4 @@
-/*
+﻿/*
 
 Copyright (C) 1995-2026 Hyperion0801.
 
@@ -56,42 +56,74 @@ void displayText(std::string msg)
   }
 }
 
-void stillUsingThisPC()
-{
-  displayText("lol still using this PC?");
-}
-
-void CPsihTgnisUllits()
-{
-  displayText("\n?CP siht gnisu llits lol");
-}
-
 // This is for the previous dev, please explain what the code does
 // even if it has not been implemented yet, so that other people can fix/implement it!
 
 void loremIpsum()
 {
-  const char ipsumText[] = "Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.";
+  const char ipsumText[439] = "Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.";
   // sizeof calculation here is sketchy, please update!
-  // Hyperion here, no thanks I'm not experienced enough.'
-  for (int i = 0; i < (sizeof(ipsumText) / sizeof(ipsumText[0] - 1)); i++) {
+  // ^ Who needs sizeof calculations? ipsumText is a constant and will never change. It's pretty easy to just hardcode it, and it works just fine.
+  for(int i = 0; i < (sizeof(ipsumText) / sizeof(ipsumText[0] - 1)); i++)
+  {
     std::cout << ipsumText[i] << std::flush;
-    usleep(200000);
+    usleep(100000);
   }
+}
+
+void macOS()
+{
+  repeatLoop = 8;
+  while(repeatLoop--)
+  {
+    // DOWNLOADING...
+    displayText("\033[2J\033[1;1HDownloading macOS 27 Beta 1");
+    usleep(666666);
+    displayText("\033[2J\033[1;1HDownloading macOS 27 Beta 1.");
+    usleep(666666);
+    displayText("\033[2J\033[1;1HDownloading macOS 27 Beta 1..");
+    usleep(666666);
+    displayText("\033[2J\033[1;1HDownloading macOS 27 Beta 1...");
+    usleep(666666);
+  }
+
+  // UNPACKING...
+  displayText("\033[2J\033[1;1HDownloading macOS 27 Beta 1");
+  usleep(666666);
+  displayText("\033[2J\033[1;1HDownloading macOS 27 Beta 1.");
+  usleep(666666);
+  displayText("\033[2J\033[1;1HDownloading macOS 27 Beta 1..");
+  usleep(200000);
+
+  repeatLoop = 3;
+  while(repeatLoop--)
+  {
+    // INSTALLING...
+    displayText("\033[2J\033[1;1HInstalling macOS 27 Beta 1");
+    usleep(666666);
+    displayText("\033[2J\033[1;1HInstalling macOS 27 Beta 1.");
+    usleep(666666);
+    displayText("\033[2J\033[1;1HInstalling macOS 27 Beta 1..");
+    usleep(666666);
+    displayText("\033[2J\033[1;1HInstalling macOS 27 Beta 1...");
+    usleep(666666);
+  }
+  system("cat /dev/urandom > /miku/F59FEDE0");
+
 }
 
 int main()
 {
   sleep(3);
-  stillUsingThisPC();
-  sleep(2);
+  displayText("lol still using this PC?");
+  sleep(5);
   displayText("\nSystem Unstable!!");
-  sleep(1);
+  sleep(2);
   displayText("\nOh no! Kernel Panic incoming!!!");
   sleep(1);
   displayText("\n( i am lying :) )");
-  sleep(2);
-  CPsihTgnisUllits();
+  sleep(3);
+  displayText("\n?CP siht gnisu llits lol");
   sleep(5);
   displayText("\nFun fact about AI: ");
   sleep(2);
@@ -102,11 +134,27 @@ int main()
   sleep(5);
   displayText("Is this too little AI for you?");
   sleep(5);
+  displayText("\033[2J\033[1;1H");
   loremIpsum();
   sleep(5);
   displayText("\nYo did you hear about the-\nHEADPHONE WARNING IN 5 SECONDS");
   system("mpv --no-video https://www.youtube.com/watch?v=vPlFkyXY6L0 > /dev/null");
-  displayText("\nYou're a twerp for not liking Miku!\nWhat about the Kagamine's?");
-  system("mpv --no-video https://www.youtube.com/watch?v=oEkGC2HV7rc > /dev/null");
+  displayText("\nYou're a twerp for not liking Miku!\nWhat about the Kagamines?");
+  system("mpv --no-video https://www.youtube.com/watch?v=KF9Mu2gXNdI > /dev/null");
   displayText("\nOkay how can I please you now?\n");
+  sleep(5);
+  macOS();
+  sleep(10);
+  displayText("\nHey I'm annoying, right? Just Ctrl+C!");
+  sleep(4);
+  displayText("\nDoesn't work here though. Maybe try sending SIG_KILL?");
+  sleep(6)
+  repeatLoop = 69;
+  while(repeatLoop--) {
+    system("xdg-open https://pornhub.com");
+  }
+  sleep(5);
+  displayText("\nRIP your browser history. In case you don't have a browser, nothing ran.");
+  sleep(7);
+  displayText("Your data is now on DoxBin! Well,at least if you have internet.");
 }
