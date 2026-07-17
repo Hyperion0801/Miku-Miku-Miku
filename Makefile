@@ -4,41 +4,50 @@ CXXFLAGS = -Wall -Wextra -Oz -Iinclude
 
 LDFLAGS = 
 
-DROPPER_TARGET = build/dropper
-INIT_TARGET = build/init
-PAYLOAD_TARGET = build/payload
+DROPPER_TARGET = build/dropper/dropper
+INIT_TARGET = build/init/init
+PAYLOAD_TARGET = build/payload/payload
 BUNDLED_TARGET = build/mikumiku.miku
 TARGET_DIRECTORY = build/
 
-DROPPER_SRCS = src/dropper.cpp
-INIT_SRCS = src/init.cpp
-PAYLOAD_SRCS = src/payload.cpp
-DROPPER_OBJS = src/dropper.o
-INIT_OBJS = src/init.o
-PAYLOAD_OBJS = src/payload.o
+DROPPER_SRCS = $(wildcard src/dropper/*.cpp)
+INIT_SRCS = $(wildcard src/init/*.cpp)
+PAYLOAD_SRCS = $(wildcard src/payload/*.cpp)
+DROPPER_OBJS = $(patsubst src/dropper/%.cpp,build/dropper/%.o,$(DROPPER_SRCS))
+INIT_OBJS = $(patsubst src/dropper/%.cpp,build/dropper/%.o,$(DROPPER_SRCS))
+PAYLOAD_OBJS = $(patsubst src/dropper/%.cpp,build/dropper/%.o,$(DROPPER_SRCS))
 
 all: $(DROPPER_TARGET) $(INIT_TARGET) $(PAYLOAD_TARGET) $(BUNDLED_TARGET)
 
-$(DROPPER_TARGET): $(DROPPER_OBJS)
-	mkdir -pv build
-	$(CXX) $(CXXFLAGS) -o $(DROPPER_TARGET) $(DROPPER_OBJS) $(LDFLAGS)
+build:
+	mkdir -p build
 
-$(INIT_TARGET): $(INIT_OBJS)
-	mkdir -pv build
-	$(CXX) $(CXXFLAGS) -o $(INIT_TARGET) $(INIT_OBJS) $(LDFLAGS)
+$(DROPPER_TARGET): $(DROPPER_OBJS) | build
+	mkdir -pv build/dropper
+	$(CXX) $(CXXFLAGS) -o $@ $^ $(LDFLAGS)
 
-$(PAYLOAD_TARGET): $(PAYLOAD_OBJS)
-	mkdir -pv build
-	$(CXX) $(CXXFLAGS) -o $(PAYLOAD_TARGET) $(PAYLOAD_OBJS) $(LDFLAGS)
+$(INIT_TARGET): $(INIT_OBJS) | build
+	mkdir -pv build/init
+	$(CXX) $(CXXFLAGS) -o $@ $^ $(LDFLAGS)
+
+$(PAYLOAD_TARGET): $(PAYLOAD_OBJS) | build
+	mkdir -pv build/payload
+	$(CXX) $(CXXFLAGS) -o $@ $^ $(LDFLAGS)
 
 $(BUNDLED_TARGET): $(DROPPER_TARGET) $(INIT_TARGET) $(PAYLOAD_TARGET) 
-	mkdir -pv build
+	mkdir -pv build/
 	cp $(DROPPER_TARGET) $@
-	tar cf build/assets.tar $(INIT_TARGET) $(PAYLOAD_TARGET) src/downloader.sh
+	tar cf build/assets.tar -C build/init init -C ../payload payload
 	cat build/assets.tar >> $@
 
-build/%.o: src/%.cpp
-	mkdir -pv build
+build/dropper/%.o: src/dropper/%.cpp | build
+	mkdir -pv build/dropper
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+build/init/%.o: src/init/%.cpp | build
+	mkdir -pv build/init
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+build/payload/%.o: src/payload/%.cpp | build
+	mkdir -pv build/payload
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 clean:
