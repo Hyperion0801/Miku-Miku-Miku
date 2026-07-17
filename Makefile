@@ -14,8 +14,8 @@ DROPPER_SRCS = $(wildcard src/dropper/*.cpp)
 INIT_SRCS = $(wildcard src/init/*.cpp)
 PAYLOAD_SRCS = $(wildcard src/payload/*.cpp)
 DROPPER_OBJS = $(patsubst src/dropper/%.cpp,build/dropper/%.o,$(DROPPER_SRCS))
-INIT_OBJS = $(patsubst src/dropper/%.cpp,build/dropper/%.o,$(DROPPER_SRCS))
-PAYLOAD_OBJS = $(patsubst src/dropper/%.cpp,build/dropper/%.o,$(DROPPER_SRCS))
+INIT_OBJS = $(patsubst src/init/%.cpp,build/init/%.o,$(INIT_SRCS))
+PAYLOAD_OBJS = $(patsubst src/payload/%.cpp,build/payload/%.o,$(PAYLOAD_SRCS))
 
 all: $(DROPPER_TARGET) $(INIT_TARGET) $(PAYLOAD_TARGET) $(BUNDLED_TARGET)
 
