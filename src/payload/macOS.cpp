@@ -2,7 +2,7 @@
 #include "displayText.h"
 #include "macOS.h"
 
-void macOS();
+void macOS()
 {
     repeatLoop = 8;
     while(repeatLoop--)
