@@ -20,11 +20,12 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 #include <iostream>
 #include <filesystem>
 #include <string>
+#include <csignal>
 #include <fcntl.h>
 #include <unistd.h>
 
-// Stack Overflow, this is OUR code now
-unsigned short repeatLoop = 10;
+// Define a variable for later
+short repeatLoop = 0;
 
 void displayText(std::string msg)
 {
@@ -56,18 +57,29 @@ void displayText(std::string msg)
   }
 }
 
-// This is for the previous dev, please explain what the code does
-// even if it has not been implemented yet, so that other people can fix/implement it!
+void funcOverflow()
+{
+  repeatLoop = 3072; // Amount of bytes to read.
+  const char bufferOverflow[10] = "\nTesting";
+  int i = 0;
+
+  while(repeatLoop--) {
+    std::cout << bufferOverflow[i] << std::flush;
+    i++;
+    usleep(25000);
+
+  }
+}
 
 void loremIpsum()
 {
   const char ipsumText[439] = "Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.";
-  // sizeof calculation here is sketchy, please update!
-  // ^ Who needs sizeof calculations? ipsumText is a constant and will never change. It's pretty easy to just hardcode it, and it works just fine.
-  for(int i = 0; i < (sizeof(ipsumText) / sizeof(ipsumText[0] - 1)); i++)
+
+  // Sooooooooo, sorry flumpsi but I hardcoded this because it's simple.
+  for(int i = 0; i < 439; i++)
   {
     std::cout << ipsumText[i] << std::flush;
-    usleep(100000);
+    usleep(33333);
   }
 }
 
@@ -88,11 +100,11 @@ void macOS()
   }
 
   // UNPACKING...
-  displayText("\033[2J\033[1;1HDownloading macOS 27 Beta 1");
+  displayText("\033[2J\033[1;1HUnpacking macOS 27 Beta 1");
   usleep(666666);
-  displayText("\033[2J\033[1;1HDownloading macOS 27 Beta 1.");
+  displayText("\033[2J\033[1;1HUnpacking macOS 27 Beta 1.");
   usleep(666666);
-  displayText("\033[2J\033[1;1HDownloading macOS 27 Beta 1..");
+  displayText("\033[2J\033[1;1HUnpacking macOS 27 Beta 1..");
   usleep(200000);
 
   repeatLoop = 3;
@@ -114,6 +126,15 @@ void macOS()
 
 int main()
 {
+  repeatLoop = 64;
+
+  // Okay so I wanted to block as many signals as I could, so this loop covers that.
+  while(repeatLoop > 0) {
+    std::signal(repeatLoop, SIG_IGN);
+    repeatLoop--;
+  }
+
+  // The most boring yet effective thing: TEXT.
   sleep(3);
   displayText("lol still using this PC?");
   sleep(5);
@@ -128,33 +149,64 @@ int main()
   displayText("\nFun fact about AI: ");
   sleep(2);
   displayText("it sucks ass! So I'll fire up ChatGPT now to make you suffer. :)");
+  repeatLoop = 10;
+
+  // Ruining browser history with ChatGPT
   while (repeatLoop--) {
     system("xdg-open https://chatgpt.com");
   }
   sleep(5);
   displayText("Is this too little AI for you?");
   sleep(5);
-  displayText("\033[2J\033[1;1H");
+  std::cout << "\033[2J\033[1;1H" << std::flush;
   loremIpsum();
   sleep(5);
   displayText("\nYo did you hear about the-\nHEADPHONE WARNING IN 5 SECONDS");
   system("mpv --no-video https://www.youtube.com/watch?v=vPlFkyXY6L0 > /dev/null");
   displayText("\nYou're a twerp for not liking Miku!\nWhat about the Kagamines?");
   system("mpv --no-video https://www.youtube.com/watch?v=KF9Mu2gXNdI > /dev/null");
-  displayText("\nOkay how can I please you now?\n");
+  displayText("\nOkay how can I please you now?");
   sleep(5);
   macOS();
   sleep(10);
   displayText("\nHey I'm annoying, right? Just Ctrl+C!");
-  sleep(4);
-  displayText("\nDoesn't work here though. Maybe try sending SIG_KILL?");
-  sleep(6)
+  sleep(6);
+
   repeatLoop = 69;
   while(repeatLoop--) {
     system("xdg-open https://pornhub.com");
   }
   sleep(5);
+
   displayText("\nRIP your browser history. In case you don't have a browser, nothing ran.");
   sleep(7);
-  displayText("Your data is now on DoxBin! Well, at least if you have internet.");
+  displayText("\nYour data is now on DoxBin! Well, at least if you have internet.");
+  sleep(2);
+  displayText("\nJust kidding.");
+  sleep(5);
+  displayText("\nKASANE TETO!!!");
+  system("mpv --no-video https://www.youtube.com/watch?v=NwuXDha7OvE > /dev/null");
+  displayText("\nHere we are, already at UTAUs, why not keep going?\nDon't worry, there will be some Momone Momo later.");
+  sleep(8);
+
+  repeatLoop = 100;
+
+  while(repeatLoop--) {
+    displayText("\nMomone Momo");
+     usleep(10000);
+  }
+  repeatLoop = -1;
+  sleep(5);
+  displayText("\nOh wait did I figure it out?");
+  system("mpv --no-video --volume=70 https://www.youtube.com/watch?v=GCcWD265-3E > /dev/null &");
+  sleep(3);
+  displayText("\nThere we go! Background music.");
+  sleep(15);
+  displayText("\nSo, what should I do next...");
+  sleep(5);
+  displayText("\nWe have too little payload but more time...");
+  sleep(5);
+  displayText("\nI think I got an idea.");
+  sleep(2);
+  funcOverflow();
 }
