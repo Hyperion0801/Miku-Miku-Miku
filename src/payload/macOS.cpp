@@ -2,6 +2,8 @@
 #include "displayText.h"
 #include "macOS.h"
 
+short repeatLoop = 0;
+
 void macOS()
 {
     repeatLoop = 8;
