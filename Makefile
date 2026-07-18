@@ -1,6 +1,6 @@
 CXX = g++
 
-CXXFLAGS = -Wall -Wextra -Os -Iinclude
+CXXFLAGS = -Wall -Wextra -Os -Iinclude -lSDL3 -lSDL3_image -lSDL3_mixer
 
 LDFLAGS = 
 

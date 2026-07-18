@@ -24,6 +24,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 #include <unistd.h>
 #include "displayText.h"
 #include "macOS.h"
+#include "miku.h"
 
 void funcOverflow()
 {
@@ -47,7 +48,7 @@ int main()
     std::signal(repeatLoop, SIG_IGN);
     repeatLoop--;
   }
-
+  initializeMiku();
   // The most boring yet effective thing: TEXT.
   sleep(10);
   displayText("lol still using this PC?");
