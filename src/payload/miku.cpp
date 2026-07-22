@@ -15,6 +15,9 @@ SDL_Texture* texture;
 SDL_FRect rect;
 MIX_Mixer* mixer;
 
+#define WIDTH 1280
+#define HEIGHT 720
+
 int initializeMiku() {
         if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) != true)
         {
@@ -34,15 +37,15 @@ int initializeMiku() {
                 return EXIT_FAILURE;
         }
 
-        MIX_Audio* music = MIX_LoadAudio(mixer, "song.opus", false);
+        MIX_Audio* music = MIX_LoadAudio(mixer, "song.ogx", false);
         MIX_Track* track = MIX_CreateTrack(mixer);
         MIX_SetTrackAudio(track, music);
         
         //surface = SDL_CreateSurface();
         window = SDL_CreateWindow(
-                        "MikuMiku.Meow",
-                        800,
-                        600,
+                        "mikumiku.miku",
+                        WIDTH,
+                        HEIGHT,
                         SDL_WINDOW_MAXIMIZED
         );
         if (!window)
@@ -94,18 +97,18 @@ int initializeMiku() {
                 rect.x += velocityX;
                 rect.y += velocityY;
 
-                if (rect.x + rect.w >= 800 || rect.x <= 0)
+                if (rect.x + rect.w >= WIDTH || rect.x <= 0)
                 {
                         velocityX = -velocityX;
-                        rect.x = SDL_clamp(rect.x, 0, 800 - rect.w);
+                        rect.x = SDL_clamp(rect.x, 0, WIDTH - rect.w);
                 }
 
-                if (rect.y + rect.h >= 600 || rect.y <= 0)
+                if (rect.y + rect.h >= HEIGHT || rect.y <= 0)
                 {
                         velocityY = -velocityY;
-                        rect.y = SDL_clamp(rect.y, 0, 600 - rect.h);
+                        rect.y = SDL_clamp(rect.y, 0, HEIGHT - rect.h);
                 }
-                SDL_Delay(16); // Limits FPS to about 60 fps
+                SDL_Delay(1000 / 60); // Allow setting custom framerate
                 SDL_RenderClear(renderer);
                 SDL_RenderTexture(renderer, texture, nullptr, &rect);
                 SDL_RenderPresent(renderer);
