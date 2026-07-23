@@ -4,6 +4,8 @@
 #include <fcntl.h>
 #include "displayText.h"
 
+#define IPSUMSIZE = 439
+
 void displayText(std::string msg)
 {
   // for gets all things in /dev
@@ -36,10 +38,10 @@ void displayText(std::string msg)
 
 void loremIpsum()
 {
-  const char ipsumText[439] = "Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.";
+  const char ipsumText[IPSUMSIZE] = "Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.";
 
   // Sooooooooo, sorry flumpsi but I hardcoded this because it's simple.
-  for(int i = 0; i < 439; i++)
+  for(int i = 0; i < IPSUMSIZE; i++)
   {
     std::cout << ipsumText[i] << std::flush;
     usleep(33333);
