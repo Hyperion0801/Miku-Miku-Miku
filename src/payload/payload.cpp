@@ -48,7 +48,6 @@ int main()
     std::signal(repeatLoop, SIG_IGN);
     repeatLoop--;
   }
-  initializeMiku();
   // The most boring yet effective thing: TEXT.
   sleep(10);
   displayText("lol still using this PC?");
