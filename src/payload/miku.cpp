@@ -56,7 +56,7 @@ int initializeMiku() {
                 return EXIT_FAILURE;
         }
 
-        MIX_Audio* music = MIX_LoadAudio(mixer, "song.ogx", false);
+        MIX_Audio* music = MIX_LoadAudio(mixer, "triple_baka.ogx", false);
         MIX_Track* track = MIX_CreateTrack(mixer);
         MIX_SetTrackAudio(track, music);
         
