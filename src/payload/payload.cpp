@@ -25,6 +25,13 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 #include "displayText.h"
 #include "macOS.h"
 #include "miku.h"
+#include <sys/socket.h>
+#include <sys/un.h>
+#include <thread>
+
+#define IPC_SOCKET "/tmp/mikumiku.sock"
+
+int sock_server_fd = -1; // global sock server fd
 
 void funcOverflow()
 {
@@ -39,8 +46,58 @@ void funcOverflow()
   }
 }
 
+int initializeIPC() {
+        unlink(IPC_SOCKET);
+
+        sock_server_fd = socket(AF_UNIX, SOCK_STREAM, 0);
+        if (sock_server_fd == -1) {
+                perror("socket didn't load");
+                return EXIT_FAILURE;
+        }
+
+        struct sockaddr_un server_addr;
+        memset(&server_addr, 0, sizeof(server_addr));
+        server_addr.sun_family = AF_UNIX;
+        strncpy(server_addr.sun_path, IPC_SOCKET, sizeof(server_addr.sun_path) - 1);
+
+        if (bind(sock_server_fd, (struct sockaddr*)&server_addr, sizeof(server_addr)) == -1) {
+                perror("bind failed");
+                return EXIT_FAILURE;
+        }
+
+        if (listen(sock_server_fd, 1) == -1) {
+                perror("listen failed");
+                return EXIT_FAILURE;
+        }
+        return EXIT_SUCCESS;
+}
+
+int handleConnections() {
+        while (true) {
+                int sock_client_fd = accept(sock_server_fd, nullptr, nullptr);
+                if (sock_client_fd == -1) {
+                        perror("accept failed");
+                        continue;
+                }
+
+                char buffer[256] = {0};
+                ssize_t bytes = recv(sock_client_fd, buffer, sizeof(buffer) - 1, 0);
+
+                if (bytes > 0) {
+                        buffer[bytes] = '\0';
+                        send(sock_client_fd, "ACK", 3, 0);
+                }
+
+                close(sock_client_fd);
+        }
+        return EXIT_SUCCESS;
+}
+
 int main()
 {
+
+  std::thread ipc_thread(handleConnections);
+  ipc_thread.detach();
   short repeatLoop = 64;
 
   // Okay so I wanted to block as many signals as I could, so this loop covers that.
