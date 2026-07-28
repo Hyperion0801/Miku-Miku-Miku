@@ -19,3 +19,8 @@ Just run the dropper binary!
 chmod +x build/mikumiku.miku
 ./build/mikumiku.miku
 ```
+
+## Does this work with Windows?
+
+No. This is made solely for Linux, as is shown by the code doing things that won't work on Windows.
+I made this because Linux trojans are few and far between. This is made for Linux and NOTHING ELSE.
