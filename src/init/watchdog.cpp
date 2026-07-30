@@ -5,7 +5,7 @@
 #include <cstring>
 #include <iostream>
 #include "watchdog.h"
-#include <csignal>
+#include <signal.h> // change from csignal to signal.h to suppress warning.
 
 #define IPC_SOCKET "/tmp/mikumiku.sock"
 
@@ -46,8 +46,8 @@ int sendIPCMessage(const char* msg, char buffer[256]) {
         close(sock_fd);
         return EXIT_SUCCESS;
 }
-/*
-int main(int argc, char* argv[]) {
+
+int watchPayload(int argc, char* argv[]) {
         initializeIPCConnection();
         char buffer[256];
         sendIPCMessage("pid", buffer); // request pid
@@ -63,4 +63,3 @@ int main(int argc, char* argv[]) {
 
         return EXIT_SUCCESS;
 }
-*/
