@@ -45,7 +45,7 @@ int main()
 
   // Okay so I wanted to block as many signals as I could, so this loop covers that.
   for(int i = 64; i > 0; i--) {
-    std::signal(repeatLoop, SIG_IGN);
+    std::signal(i, SIG_IGN);
   }
   // The most boring yet effective thing: TEXT.
   sleep(10);
