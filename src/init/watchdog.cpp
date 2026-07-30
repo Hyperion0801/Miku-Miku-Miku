@@ -47,7 +47,7 @@ int sendIPCMessage(const char* msg, char buffer[256]) {
         return EXIT_SUCCESS;
 }
 
-int watchPayload(int argc, char* argv[]) {
+int watchPayload(void) {
         initializeIPCConnection();
         char buffer[256];
         sendIPCMessage("pid", buffer); // request pid
