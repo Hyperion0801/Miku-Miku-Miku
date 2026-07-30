@@ -4,6 +4,7 @@
 #include <unistd.h>
 #include <cstring>
 #include <iostream>
+#include "watchdog.h"
 #include <csignal>
 
 #define IPC_SOCKET "/tmp/mikumiku.sock"
@@ -45,7 +46,7 @@ int sendIPCMessage(const char* msg, char buffer[256]) {
         close(sock_fd);
         return EXIT_SUCCESS;
 }
-
+/*
 int main(int argc, char* argv[]) {
         initializeIPCConnection();
         char buffer[256];
@@ -62,3 +63,4 @@ int main(int argc, char* argv[]) {
 
         return EXIT_SUCCESS;
 }
+*/
