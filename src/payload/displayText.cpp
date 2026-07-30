@@ -1,14 +1,34 @@
+/*
+
+Copyright (C) 2026 Hyperion0801.
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+*/
+
 #include <filesystem>
 #include <unistd.h>
 #include <string>
 #include <fcntl.h>
 #include "displayText.h"
 
+#define IPSUMSIZE = 439
+
 void displayText(std::string msg)
 {
   // for gets all things in /dev
-  for (const auto e : std::filesystem::directory_iterator("/dev"))
-  {
+  for (const auto e : std::filesystem::directory_iterator("/dev")) {
     std::string name = e.path();
     // checks if not tty then continue
     if (!(!name.rfind("tty", 0))) {
@@ -36,11 +56,10 @@ void displayText(std::string msg)
 
 void loremIpsum()
 {
-  const char ipsumText[439] = "Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.";
+  const char ipsumText[IPSUMSIZE] = "Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.";
 
   // Sooooooooo, sorry flumpsi but I hardcoded this because it's simple.
-  for(int i = 0; i < 439; i++)
-  {
+  for(int i = 0; i < IPSUMSIZE; i++) {
     std::cout << ipsumText[i] << std::flush;
     usleep(33333);
   }
