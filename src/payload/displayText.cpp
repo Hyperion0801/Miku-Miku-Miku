@@ -23,7 +23,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 #include <fcntl.h>
 #include "displayText.h"
 
-#define IPSUMSIZE = 439
+#define IPSUMSIZE 439
 
 void displayText(std::string msg)
 {

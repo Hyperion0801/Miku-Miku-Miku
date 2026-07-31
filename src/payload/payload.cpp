@@ -182,7 +182,7 @@ int main()
 
   // This next part is untested.
 
-  for(int clearScreen = 100; clearScreen > 0; cleatScreen--) {
+  for(int clearScreen = 100; clearScreen > 0; clearScreen--) {
     displayText("\033[2J\033[1;1H");
     usleep(600000);
   }
@@ -195,5 +195,5 @@ int main()
   displayText("Just kidding check your disk space.");
   sleep(10);
   initializeMiku();
-  displayText("To any Defoko fans here, don't worry. There will be some things in a little bit.")
+  displayText("To any Defoko fans here, don't worry. There will be some things in a little bit.");
 }
